@@ -1,0 +1,13 @@
+Package: dashItemDrag
+Title: Make anything movable on the page
+Version: 0.0.1
+Description: Make anything movable on the page
+Depends: R (>= 3.0.2)
+Imports: 
+Suggests: 
+License: MIT + file LICENSE
+URL: 
+BugReports: 
+Encoding: UTF-8
+LazyData: true
+KeepSource: true

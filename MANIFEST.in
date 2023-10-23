@@ -1,0 +1,11 @@
+include dash_item_drag/dash_item_drag.min.js
+include dash_item_drag/dash_item_drag.min.js.map
+include dash_item_drag/async-*.js
+include dash_item_drag/async-*.js.map
+include dash_item_drag/*-shared.js
+include dash_item_drag/*-shared.js.map
+include dash_item_drag/metadata.json
+include dash_item_drag/package-info.json
+include README.md
+include LICENSE
+include package.json

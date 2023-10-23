@@ -1,0 +1,26 @@
+.draggable-container {
+    position: relative;
+  }
+  
+  .draggable-container:hover .edit-button {
+    display: block;
+  }
+  
+  .edit-button {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  
+  .slider {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .is-editing .slider {
+    display: block;
+  }
+  
