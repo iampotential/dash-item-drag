@@ -1,0 +1,44 @@
+name: Publish release
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  release:
+    name: Release
+    if: ${{ github.event.pull_request.merged && startsWith(github.head_ref, 'release/') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GH_ACCESS_TOKEN_TOM }}
+
+      - id: get-version
+        run: echo "::set-output name=version::$(echo ${{ github.head_ref }} | sed 's|release/||')"
+
+      - name: Use Node 19
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19
+
+      - name: Install dependencies
+        run: npm ci
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.10'
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Update docs requirements
+        run: invoke set-documentation-version ${{ steps.get-version.outputs.version }}
+
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Build dash_item_drag
+        run: python -m build --sdist --wheel --outdir dist/
